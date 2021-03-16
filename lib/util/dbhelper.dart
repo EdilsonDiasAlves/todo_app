@@ -40,4 +40,36 @@ class DbHelper {
         "CREATE TABLE $tblTodo($colId INTEGER PRIMARY KEY, $colTitle TEXT, " +
             "$colDescription TEXT, $colPriority INTEGER, $colDate TEXT)");
   }
+
+  Future<int> insertTodo(Todo todo) async {
+    Database db = await this.db;
+    var result = db.insert(tblTodo, todo.toMap());
+    return result;
+  }
+
+  Future<List> getTodos() async {
+    Database db = await this.db;
+    var result =
+        db.rawQuery("SELECT * FROM $tblTodo ORDER BY $colPriority ASC");
+    return result;
+  }
+
+  Future<int> getCount() async {
+    Database db = await this.db;
+    var result = Sqflite.firstIntValue(
+        await db.rawQuery("SELECT COUNT(*) FROM $tblTodo"));
+    return result;
+  }
+
+  Future<int> updateTodo(Todo todo) async {
+    Database db = await this.db;
+    var result = await db.update(tblTodo, todo.toMap(),
+        where: "$colId = ?", whereArgs: [todo.id]);
+  }
+
+  Future<int> deleteTodo(int id) async {
+    Database db = await this.db;
+    var result = await db.rawDelete('DELETE FROM $tblTodo WHERE $colId = $id');
+    return result;
+  }
 }
