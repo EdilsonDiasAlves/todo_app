@@ -43,14 +43,14 @@ class DbHelper {
 
   Future<int> insertTodo(Todo todo) async {
     Database db = await this.db;
-    var result = db.insert(tblTodo, todo.toMap());
+    var result = await db.insert(tblTodo, todo.toMap());
     return result;
   }
 
   Future<List> getTodos() async {
     Database db = await this.db;
     var result =
-        db.rawQuery("SELECT * FROM $tblTodo ORDER BY $colPriority ASC");
+        await db.rawQuery("SELECT * FROM $tblTodo ORDER BY $colPriority ASC");
     return result;
   }
 
@@ -65,6 +65,7 @@ class DbHelper {
     Database db = await this.db;
     var result = await db.update(tblTodo, todo.toMap(),
         where: "$colId = ?", whereArgs: [todo.id]);
+    return result;
   }
 
   Future<int> deleteTodo(int id) async {
