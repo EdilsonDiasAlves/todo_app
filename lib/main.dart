@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/todolist.dart';
-import 'package:todo_app/util/dbhelper.dart';
-
-import 'model/todo.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,6 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Todos App',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
@@ -32,8 +30,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

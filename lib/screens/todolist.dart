@@ -93,5 +93,8 @@ class TodoListState extends State<TodoList> {
   void navigateToDetail(Todo todo) async {
     bool result = await Navigator.push(
         context, MaterialPageRoute(builder: (context) => TodoDetail(todo)));
+    if (result == true) {
+      getData();
+    }
   }
 }
