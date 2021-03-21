@@ -15,7 +15,7 @@ class TodoDetailState extends State<TodoDetail> {
   Todo todo;
   TodoDetailState(this.todo);
   final _priorities = ["High", "Medium", "Low"];
-  String priority = "Low";
+  String _priority = "Low";
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
@@ -57,8 +57,12 @@ class TodoDetailState extends State<TodoDetail> {
                     value: value, child: Text(value));
               }).toList(),
               style: textStyle,
-              value: "Low",
-              onChanged: null)
+              value: _priority,
+              onChanged: (String newValue) {
+                setState(() {
+                  _priority = newValue;
+                });
+              })
         ],
       ),
     );
