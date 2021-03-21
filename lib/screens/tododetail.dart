@@ -29,42 +29,52 @@ class TodoDetailState extends State<TodoDetail> {
         automaticallyImplyLeading: false,
         title: Text(todo.title),
       ),
-      body: Column(
-        children: <Widget>[
-          TextField(
-            controller: titleController,
-            style: textStyle,
-            decoration: InputDecoration(
-                labelText: "Title",
-                labelStyle: textStyle,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                )),
-          ),
-          TextField(
-            controller: descriptionController,
-            style: textStyle,
-            decoration: InputDecoration(
-                labelText: "Description",
-                labelStyle: textStyle,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                )),
-          ),
-          DropdownButton<String>(
-              items: _priorities.map((String value) {
-                return DropdownMenuItem<String>(
-                    value: value, child: Text(value));
-              }).toList(),
-              style: textStyle,
-              value: _priority,
-              onChanged: (String newValue) {
-                setState(() {
-                  _priority = newValue;
-                });
-              })
-        ],
-      ),
+      body: Padding(
+          padding: EdgeInsets.only(top: 35.0, left: 10.0, right: 10.0),
+          child: ListView(
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  TextField(
+                    controller: titleController,
+                    style: textStyle,
+                    decoration: InputDecoration(
+                        labelText: "Title",
+                        labelStyle: textStyle,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        )),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                    child: TextField(
+                      controller: descriptionController,
+                      style: textStyle,
+                      decoration: InputDecoration(
+                          labelText: "Description",
+                          labelStyle: textStyle,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          )),
+                    ),
+                  ),
+                  ListTile(
+                      title: DropdownButton<String>(
+                          items: _priorities.map((String value) {
+                            return DropdownMenuItem<String>(
+                                value: value, child: Text(value));
+                          }).toList(),
+                          style: textStyle,
+                          value: _priority,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              _priority = newValue;
+                            });
+                          })),
+                ],
+              ),
+            ],
+          )),
     );
   }
 }
