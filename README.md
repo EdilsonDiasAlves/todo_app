@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+A new todo-lisy app in Flutter project, it uses a dblite and simple navigation, with operations to add, change and remove tasks from a todo list.
 
 A few resources to get you started if this is your first Flutter project:
 
